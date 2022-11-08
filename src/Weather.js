@@ -15,6 +15,7 @@ import axios from "axios";
 
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
+  const [city, setCity] = useState(props.defaultCity);
 
   function handleResponse(response) {
     // console.log(response.data.dt);
@@ -32,7 +33,12 @@ export default function Weather(props) {
       icon: "/icons/cloudy-day.svg",
     });
   }
-
+  function search() {
+    const apiKey = "9fc865e012a4a6fe2c8d7eeeea36dcf2";
+    let units = "imperial";
+    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
+    axios.get(apiUrl).then(handleResponse);
+  }
   if (weatherData.ready) {
     console.log(weatherData.date);
     return (
@@ -85,10 +91,7 @@ export default function Weather(props) {
       </div>
     );
   } else {
-    const apiKey = "9fc865e012a4a6fe2c8d7eeeea36dcf2";
-    let units = "imperial";
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.defaultCity}&appid=${apiKey}&units=${units}`;
-    axios.get(apiUrl).then(handleResponse);
+    search();
 
     return <h1>Loading...</h1>;
   }
