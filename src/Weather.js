@@ -62,12 +62,12 @@ export default function Weather() {
       </div>
       <div className="text-white text-left pl-5 mt-n4">
         <a
-          href="https://github.com/saraikong/weather-app.git"
+          href="https://github.com/saraikong/weather-react"
           target="_blank"
           rel="noreferrer"
         >
           Open-source code
-        </a>{" "}
+        </a>
         by Sarai Kong
       </div>
     </div>
