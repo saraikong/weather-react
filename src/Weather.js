@@ -1,13 +1,75 @@
-import axios from "axios";
 import React from "react";
 
-export default function Weather(props) {
-  function handleResponse(response) {
-    console.log(`The weather in Paris is ${response.data.main.temp}° C`);
-  }
+import MainTitle from "./MainTitle";
+import CurrentTime from "./CurrentTime";
+import SearchBar from "./SearchBar";
+import CurrentCityButton from "./CurrentCityButton";
+import MainWeatherIcon from "./MainWeatherIcon";
+import CurrentWeather from "./CurrentWeather";
+import HourlyForecast from "./HourlyForecast";
+import FiveDayForecast from "./FiveDayForecast";
 
-  let apiKey = "9fc865e012a4a6fe2c8d7eeeea36dcf2";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${props.city}&appid=${apiKey}&units=metric`;
-  axios.get(apiUrl).then(handleResponse);
-  return <h2>Hello from Weather</h2>;
+import "./Weather.css";
+
+let weatherData = {
+  city: "Minneapolis, MN",
+  day: "Thursday",
+  time: "9:57 PM",
+  temperature: 58,
+  weatherDescription: "partly cloudy",
+  humidity: 80,
+  wind: 3,
+  icon: "/icons/cloudy-day.svg",
+};
+
+export default function Weather() {
+  return (
+    <div className="Weather">
+      <div className="border rounded m-5 shadow wrapper">
+        <div className="row">
+          <div className="col  ml-5 ">
+            <div className="row mt-4">
+              <MainTitle city={weatherData.city} />
+              <CurrentTime day={weatherData.day} time={weatherData.time} />
+              <div className="col-md-4">
+                <SearchBar />
+                <CurrentCityButton />
+              </div>
+            </div>
+            <div className="row">
+              <MainWeatherIcon icon={weatherData.icon} />
+              <div className=" col">
+                <CurrentWeather
+                  temperature={weatherData.temperature}
+                  weatherDescription={weatherData.weatherDescription}
+                  humidity={weatherData.humidity}
+                  wind={weatherData.wind}
+                />
+              </div>
+            </div>
+            <br />
+            <HourlyForecast
+              time={weatherData.time}
+              temperature={weatherData.temperature}
+              icon={weatherData.icon}
+            />
+          </div>
+
+          <div className="col-3 mt-2 mb-2 ml-2 mr-3">
+            <FiveDayForecast day={weatherData.day} icon={weatherData.icon} />
+          </div>
+        </div>
+      </div>
+      <div className="text-white text-left pl-5 mt-n4">
+        <a
+          href="https://github.com/saraikong/weather-app.git"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Open-source code
+        </a>{" "}
+        by Sarai Kong
+      </div>
+    </div>
+  );
 }

@@ -1,0 +1,16 @@
+.FiveDayForecast {
+  background-color: #243e65;
+  color: aliceblue;
+}
+
+.FiveDayForecast ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.FiveDayForecast img {
+  width: 100px;
+  display: block;
+  margin: 0 auto;
+}

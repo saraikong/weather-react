@@ -1,0 +1,13 @@
+.CurrentWeather ul {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+}
+
+.CurrentWeather .main-temperature {
+  font-size: 80px;
+}
+
+.CurrentWeather li {
+  text-transform: capitalize;
+}
