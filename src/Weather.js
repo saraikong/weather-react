@@ -17,11 +17,12 @@ export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
 
   function handleResponse(response) {
-    console.log(response.data);
+    // console.log(response.data.dt);
 
     setWeatherData({
       ready: true,
       city: response.data.name,
+      date: new Date(response.data.dt * 1000),
       day: "Thursday",
       time: "9:57 PM",
       temperature: Math.round(response.data.main.temp),
@@ -33,6 +34,7 @@ export default function Weather(props) {
   }
 
   if (weatherData.ready) {
+    console.log(weatherData.date);
     return (
       <div className="Weather">
         <div className="border rounded m-5 shadow wrapper">
@@ -40,7 +42,7 @@ export default function Weather(props) {
             <div className="col  ml-5 ">
               <div className="row mt-4">
                 <MainTitle city={weatherData.city} />
-                <CurrentTime day={weatherData.day} time={weatherData.time} />
+                <CurrentTime date={weatherData.date} time={weatherData.time} />
                 <div className="col-md-4">
                   <SearchBar />
                   <CurrentCityButton />
