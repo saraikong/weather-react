@@ -27,7 +27,7 @@ export default function MainWeatherIcon(prop) {
     <div className="MainWeatherIcon col-md">
       <div className="MainWeatherIcon pr-5 ">
         <img
-          src={prop.icon}
+          src={codeMapping[prop.icon]}
           alt={prop.alt}
           className="img-fluid icon-style border rounded wrapper-three shadow-sm"
         />
