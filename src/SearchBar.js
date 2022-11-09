@@ -1,10 +1,18 @@
 import React from "react";
 
 export default function SearchBar(props) {
+  function handleSubmit(event) {
+    event.preventDefault();
+    props.search(props.city);
+  }
+
+  function handleCityChange(event) {
+    props.setCity(event.target.value);
+  }
   return (
     <div className="SearchBar">
       <nav className="navbar navbar-light pt-0">
-        <form className="form-inline" onSubmit={props.submit}>
+        <form className="form-inline" onSubmit={handleSubmit}>
           <input
             className="form-control form-control-sm mr-sm-2"
             type="search"
@@ -12,7 +20,7 @@ export default function SearchBar(props) {
             aria-label="Search"
             autocomplete="off"
             autoFocus="on"
-            onChange={props.changeCity}
+            onChange={handleCityChange}
           />
         </form>
       </nav>

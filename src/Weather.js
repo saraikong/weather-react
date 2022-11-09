@@ -18,8 +18,6 @@ export default function Weather(props) {
   const [city, setCity] = useState(props.defaultCity);
 
   function handleResponse(response) {
-    // console.log(response.data.dt);
-
     setWeatherData({
       ready: true,
       city: response.data.name,
@@ -33,14 +31,6 @@ export default function Weather(props) {
       icon: response.data.weather[0].icon,
     });
   }
-  function handleSubmit(event) {
-    event.preventDefault();
-    search(city);
-  }
-
-  function handleCityChange(event) {
-    setCity(event.target.value);
-  }
 
   function search() {
     const apiKey = "9fc865e012a4a6fe2c8d7eeeea36dcf2";
@@ -49,7 +39,6 @@ export default function Weather(props) {
     axios.get(apiUrl).then(handleResponse);
   }
   if (weatherData.ready) {
-    // console.log(weatherData.icon);
     return (
       <div className="Weather">
         <div className="border rounded m-5 shadow wrapper">
@@ -59,10 +48,7 @@ export default function Weather(props) {
                 <MainTitle city={weatherData.city} />
                 <CurrentTime date={weatherData.date} time={weatherData.time} />
                 <div className="col-md-4">
-                  <SearchBar
-                    submit={handleSubmit}
-                    changeCity={handleCityChange}
-                  />
+                  <SearchBar setCity={setCity} search={search} city={city} />
                   <CurrentCityButton />
                 </div>
               </div>
