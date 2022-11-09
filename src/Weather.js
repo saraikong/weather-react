@@ -33,6 +33,15 @@ export default function Weather(props) {
       icon: response.data.weather[0].icon,
     });
   }
+  function handleSubmit(event) {
+    event.preventDefault();
+    search(city);
+  }
+
+  function handleCityChange(event) {
+    setCity(event.target.value);
+  }
+
   function search() {
     const apiKey = "9fc865e012a4a6fe2c8d7eeeea36dcf2";
     let units = "imperial";
@@ -50,7 +59,10 @@ export default function Weather(props) {
                 <MainTitle city={weatherData.city} />
                 <CurrentTime date={weatherData.date} time={weatherData.time} />
                 <div className="col-md-4">
-                  <SearchBar />
+                  <SearchBar
+                    submit={handleSubmit}
+                    changeCity={handleCityChange}
+                  />
                   <CurrentCityButton />
                 </div>
               </div>
