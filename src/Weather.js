@@ -30,7 +30,7 @@ export default function Weather(props) {
       weatherDescription: response.data.weather[0].description,
       humidity: response.data.main.humidity,
       wind: Math.round(response.data.wind.speed),
-      icon: "/icons/cloudy-day.svg",
+      icon: response.data.weather[0].icon,
     });
   }
   function search() {
@@ -40,7 +40,7 @@ export default function Weather(props) {
     axios.get(apiUrl).then(handleResponse);
   }
   if (weatherData.ready) {
-    console.log(weatherData.date);
+    console.log(weatherData.icon);
     return (
       <div className="Weather">
         <div className="border rounded m-5 shadow wrapper">
@@ -55,7 +55,10 @@ export default function Weather(props) {
                 </div>
               </div>
               <div className="row">
-                <MainWeatherIcon icon={weatherData.icon} />
+                <MainWeatherIcon
+                  icon={weatherData.icon}
+                  alt={weatherData.weatherDescription}
+                />
                 <div className=" col">
                   <CurrentWeather
                     temperature={weatherData.temperature}
