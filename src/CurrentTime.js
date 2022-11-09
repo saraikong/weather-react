@@ -30,6 +30,7 @@ export default function CurrentTime(props) {
     case hours === 0:
       amPM = "AM";
       hours = hours + 12;
+      break;
     default:
       hours = "Loading...";
   }
