@@ -18,7 +18,7 @@ export default function MainWeatherIcon(prop) {
     "50d": "/icons/cloudy.svg",
     "50n": "/icons/cloudy.svg",
     "11d": "/icons/thunder.svg",
-    "11d": "/icons/thunder.svg",
+    "11n": "/icons/thunder.svg",
     "13d": "/icons/snowy.svg",
     "13n": "/icons/snowy.svg",
   };
