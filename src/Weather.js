@@ -40,7 +40,7 @@ export default function Weather(props) {
     axios.get(apiUrl).then(handleResponse);
   }
   if (weatherData.ready) {
-    console.log(weatherData.icon);
+    // console.log(weatherData.icon);
     return (
       <div className="Weather">
         <div className="border rounded m-5 shadow wrapper">
