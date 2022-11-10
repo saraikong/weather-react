@@ -4,7 +4,7 @@ import MainTitle from "./MainTitle";
 import CurrentTime from "./CurrentTime";
 import SearchBar from "./SearchBar";
 import CurrentCityButton from "./CurrentCityButton";
-import MainWeatherIcon from "./MainWeatherIcon";
+import WeatherIcon from "./WeatherIcon";
 import CurrentWeather from "./CurrentWeather";
 import HourlyForecast from "./HourlyForecast";
 import FiveDayForecast from "./FiveDayForecast";
@@ -40,7 +40,7 @@ export default function Weather(props) {
   }
   if (weatherData.ready) {
     return (
-      <div className="Weather">
+      <div className="Weather ">
         <div className="border rounded m-5 shadow wrapper">
           <div className="row">
             <div className="col  ml-5 ">
@@ -53,10 +53,14 @@ export default function Weather(props) {
                 </div>
               </div>
               <div className="row">
-                <MainWeatherIcon
-                  icon={weatherData.icon}
-                  alt={weatherData.weatherDescription}
-                />
+                <div className="MainWeatherIcon col-md">
+                  <div className="MainWeatherIcon pr-5">
+                    <WeatherIcon
+                      icon={weatherData.icon}
+                      alt={weatherData.weatherDescription}
+                    />
+                  </div>
+                </div>
                 <div className=" col">
                   <CurrentWeather
                     temperature={weatherData.temperature}

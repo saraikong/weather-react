@@ -4,8 +4,10 @@ import Weather from "./Weather";
 
 export default function App() {
   return (
-    <div className="App container">
-      <Weather defaultCity="New York" />
+    <div className="App">
+      <div className="container">
+        <Weather defaultCity="New York" />
+      </div>
     </div>
   );
 }

@@ -1,7 +1,6 @@
 import React from "react";
-import "./MainWeatherIcon.css";
 
-export default function MainWeatherIcon(prop) {
+export default function WeatherIcon(prop) {
   const codeMapping = {
     "09d": "/icons/rainy.svg",
     "09n": "/icons/rainy.svg",
@@ -24,14 +23,12 @@ export default function MainWeatherIcon(prop) {
   };
 
   return (
-    <div className="MainWeatherIcon col-md">
-      <div className="MainWeatherIcon pr-5 ">
-        <img
-          src={codeMapping[prop.icon]}
-          alt={prop.alt}
-          className="img-fluid icon-style border rounded wrapper-three shadow-sm"
-        />
-      </div>
+    <div className="WeatherIcon pr-5 ">
+      <img
+        src={codeMapping[prop.icon]}
+        alt={prop.alt}
+        className="img-fluid  "
+      />
     </div>
   );
 }
