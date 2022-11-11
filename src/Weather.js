@@ -29,11 +29,13 @@ export default function Weather(props) {
       humidity: response.data.main.humidity,
       wind: Math.round(response.data.wind.speed),
       icon: response.data.weather[0].icon,
+      latitude: response.data.coord.lat,
+      longitude: response.data.coord.lon,
     });
   }
 
   function search() {
-    const apiKey = "9fc865e012a4a6fe2c8d7eeeea36dcf2";
+    const apiKey = "197ef3a642b76eef90e131866f74a0a0";
     let units = "imperial";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
     axios.get(apiUrl).then(handleResponse);
@@ -79,7 +81,12 @@ export default function Weather(props) {
             </div>
 
             <div className="col-3 mt-2 mb-2 ml-2 mr-3">
-              <FiveDayForecast day={weatherData.day} icon={weatherData.icon} />
+              <FiveDayForecast
+                day={weatherData.day}
+                icon={weatherData.icon}
+                latitude={weatherData.latitude}
+                longitude={weatherData.longitude}
+              />
             </div>
           </div>
         </div>
