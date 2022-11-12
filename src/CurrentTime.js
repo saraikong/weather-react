@@ -2,7 +2,6 @@ import React from "react";
 import "./CurrentTime.css";
 
 export default function CurrentTime(props) {
-  // console.log(props.date);
   let days = [
     "Sunday",
     "Monday",

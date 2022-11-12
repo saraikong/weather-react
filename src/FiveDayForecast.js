@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import WeatherIcon from "./WeatherIcon";
+
+import WeatherForecastDay from "./WeatherForecastDay";
 
 import "./FiveDayForecast.css";
 import axios from "axios";
@@ -16,40 +17,19 @@ export default function FiveDayForecast(props) {
 
   if (loaded) {
     return (
-      <div className="FiveDayForecast card shadow wrapper-two">
-        <ul>
-          <div>
-            <li>
-              <div className="card-body pt-2 pb-0 mb-n2">
-                <p className=" mb-n5">{props.day}</p>
-                <WeatherIcon icon={forecast[0].weather[0].icon} />
-              </div>
-            </li>
-            <li>
-              <div className="card-body pt-2 pb-0 mb-n2">
-                <p className=" mb-n2">{props.day}</p>
-                <WeatherIcon icon={props.icon} />
-              </div>
-            </li>
-            <li>
-              <div className="card-body pt-2 pb-0 mb-n2">
-                <p className=" mb-n2">{props.day}</p>
-                <WeatherIcon icon={props.icon} />
-              </div>
-            </li>
-            <li>
-              <div className="card-body pt-2 pb-0 mb-n2">
-                <p className=" mb-n2">{props.day}</p>
-                <WeatherIcon icon={props.icon} />
-              </div>
-            </li>
-            <li>
-              <div className="card-body pt-2 pb-0 mb-n2">
-                <p className=" mb-n2">{props.day}</p>
-                <WeatherIcon icon={props.icon} />
-              </div>
-            </li>
-          </div>
+      <div className="FiveDayForecast card shadow ">
+        <ul className="mb-5">
+          {forecast.map(function (dailyForecast, index) {
+            if (index < 6 && index > 0) {
+              return (
+                <div key={index}>
+                  <WeatherForecastDay data={dailyForecast} />
+                </div>
+              );
+            } else {
+              return null;
+            }
+          })}
         </ul>
       </div>
     );
