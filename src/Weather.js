@@ -41,9 +41,9 @@ export default function Weather(props) {
   }
   if (weatherData.ready) {
     return (
-      <div className="Weather ">
-        <div className="border rounded m-5 shadow wrapper">
-          <div className="row">
+      <div className="Weather container">
+        <div className="border rounded m-5 shadow  ">
+          <div className="wrapper row">
             <div className="col  ml-5 ">
               <div className="row mt-4">
                 <MainTitle city={weatherData.city} />
@@ -71,8 +71,8 @@ export default function Weather(props) {
                   />
                 </div>
               </div>
-              <br />
-              <div className="row">
+
+              <div className="pt-4 ps-n5 ms-n5">
                 <HourlyForecast
                   icon={weatherData.icon}
                   coordinates={weatherData.coordinates}

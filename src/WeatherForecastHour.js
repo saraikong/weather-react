@@ -41,7 +41,7 @@ export default function WeatherForecastHour(props) {
               {hour}:{minutes} {amPm}
             </li>
             <li className="pt-2">{temperature} °F</li>
-            <li className="pt-4">
+            <li className="pt-0 pb-n5">
               <WeatherIcon icon={props.data.weather[0].icon} />
             </li>
           </ul>

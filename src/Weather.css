@@ -1,11 +1,13 @@
 .Weather {
-  max-width: 1000px;
+  width: 1000px;
   margin: 0 auto;
 }
 
 .Weather .wrapper {
   background-color: aliceblue;
   color: #192b47;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .MainWeatherIcon img {
