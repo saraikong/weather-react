@@ -90,14 +90,22 @@ export default function Weather(props) {
           </div>
         </div>
         <div className="text-white text-left pl-5 mt-n4">
+          This project was coded by Sarai Kong and is{" "}
           <a
             href="https://github.com/saraikong/weather-react"
             target="_blank"
             rel="noreferrer"
           >
-            Open-source code
+            open-sourced on GitHub
+          </a>{" "}
+          and{" "}
+          <a
+            href="https://magical-capybara-e3b566.netlify.app/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            hosted on Netlify
           </a>
-          by Sarai Kong
         </div>
       </div>
     );
