@@ -34,7 +34,7 @@ export default function Weather(props) {
   }
 
   function search() {
-    const apiKey = "197ef3a642b76eef90e131866f74a0a0";
+    const apiKey = "d1a86552de255334f6117b348c4519bd";
     let units = "imperial";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`;
     axios.get(apiUrl).then(handleResponse);
@@ -72,19 +72,18 @@ export default function Weather(props) {
                 </div>
               </div>
               <br />
-              <HourlyForecast
-                time={weatherData.time}
-                temperature={weatherData.temperature}
-                icon={weatherData.icon}
-              />
+              <div className="row">
+                <HourlyForecast
+                  icon={weatherData.icon}
+                  coordinates={weatherData.coordinates}
+                />
+              </div>
             </div>
 
             <div className="col-3 mt-2 mb-2 ml-2 mr-3">
               <FiveDayForecast
                 day={weatherData.day}
                 icon={weatherData.icon}
-                latitude={weatherData.latitude}
-                longitude={weatherData.longitude}
                 coordinates={weatherData.coordinates}
               />
             </div>

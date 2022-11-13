@@ -1,81 +1,50 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
 import "./HourlyForecast.css";
 import WeatherForecastHour from "./WeatherForecastHour";
 
-export default function HourlyForecast(prop) {
-  return (
-    <div className="HourlyForecast row mt-4 border rounded pt-2 shadow-sm mb-4">
-      <WeatherForecastHour />
+export default function HourlyForecast(props) {
+  let [loaded, setLoaded] = useState(false);
+  let [forecast, setForecast] = useState(null);
+  let [minutes, setMinutes] = useState(null);
 
-      <div className="col ">
-        <div className="row ">
-          <div className="col-12">
-            <ul>
-              <li>{prop.time}</li>
-              <li className="pt-2">{prop.temperature}°F</li>
-              <li className="pt-4">
-                <img
-                  src={prop.icon}
-                  alt="Hourly forecast weather icon"
-                  className="img-fluid icon-style mt-n4 mb-n3 ml-2"
+  useEffect(() => {
+    setLoaded(false);
+  }, [props.coordinates]);
+
+  function handleResponse(response) {
+    setLoaded(true);
+    setForecast(response.data.hourly);
+    setMinutes(response.data.minutely[0]);
+  }
+  if (loaded) {
+    return (
+      <div className="HourlyForecast row mt-4 border rounded pt-2 shadow-sm mb-4 ps-0">
+        {forecast.map(function (fiveHourForecast, index) {
+          if (index < 6 && index > 0) {
+            return (
+              <div key={index} className="col">
+                <WeatherForecastHour
+                  data={fiveHourForecast}
+                  minutes={minutes}
                 />
-              </li>
-            </ul>
-          </div>
-        </div>
+              </div>
+            );
+          } else {
+            return null;
+          }
+        })}
       </div>
-      <div className="col ">
-        <div className="row ">
-          <div className="col-12">
-            <ul>
-              <li>{prop.time}</li>
-              <li className="pt-2">{prop.temperature}°F</li>
-              <li className="pt-4">
-                <img
-                  src={prop.icon}
-                  alt="Hourly forecast weather icon"
-                  className="img-fluid icon-style mt-n4 mb-n3 ml-2"
-                />
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div className="col ">
-        <div className="row ">
-          <div className="col-12">
-            <ul>
-              <li>{prop.time}</li>
-              <li className="pt-2">{prop.temperature}°F</li>
-              <li className="pt-4">
-                <img
-                  src={prop.icon}
-                  alt="Hourly forecast weather icon"
-                  className="img-fluid icon-style mt-n4 mb-n3 ml-2"
-                />
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div className="col ">
-        <div className="row ">
-          <div className="col-12">
-            <ul>
-              <li>{prop.time}</li>
-              <li className="pt-2">{prop.temperature}°F</li>
-              <li className="pt-4">
-                <img
-                  src={prop.icon}
-                  alt="Hourly forecast weather icon"
-                  className="img-fluid icon-style mt-n4 mb-n3 ml-2"
-                />
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+    );
+  } else {
+    let apiKey = "d1a86552de255334f6117b348c4519bd";
+    let units = "imperial";
+    let longitude = props.coordinates.lon;
+    let latitude = props.coordinates.lat;
+    let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=${units}`;
+    axios.get(apiUrl).then(handleResponse);
+
+    return null;
+  }
 }

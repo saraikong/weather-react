@@ -3,7 +3,6 @@ import axios from "axios";
 
 export default function CurrentCityButton(props) {
   function handleResponse(response) {
-    console.log(response);
     props.setCity(response.data.name);
     props.search();
   }
@@ -18,8 +17,6 @@ export default function CurrentCityButton(props) {
       let latitude = location.coords.latitude;
       let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&exclude={part}&appid=${apiKey}&units=${units}`;
       axios.get(apiUrl).then(handleResponse);
-
-      console.log(apiUrl);
     }
 
     navigator.geolocation.getCurrentPosition(currentCity);
