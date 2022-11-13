@@ -49,8 +49,8 @@ export default function Weather(props) {
                 <MainTitle city={weatherData.city} />
                 <CurrentTime date={weatherData.date} time={weatherData.time} />
                 <div className="col-md-4">
-                  <SearchBar setCity={setCity} search={search} city={city} />
-                  <CurrentCityButton />
+                  <SearchBar setCity={setCity} search={search} />
+                  <CurrentCityButton setCity={setCity} search={search} />
                 </div>
               </div>
               <div className="row">

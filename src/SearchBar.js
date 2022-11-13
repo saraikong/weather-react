@@ -3,7 +3,7 @@ import React from "react";
 export default function SearchBar(props) {
   function handleSubmit(event) {
     event.preventDefault();
-    props.search(props.city);
+    props.search();
   }
 
   function handleCityChange(event) {
