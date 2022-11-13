@@ -16,7 +16,6 @@ import axios from "axios";
 export default function Weather(props) {
   const [weatherData, setWeatherData] = useState({ ready: false });
   const [city, setCity] = useState(props.defaultCity);
-  const [coordinates, setCoordinates] = useState("");
 
   function handleResponse(response) {
     setWeatherData({
@@ -30,9 +29,7 @@ export default function Weather(props) {
       humidity: response.data.main.humidity,
       wind: Math.round(response.data.wind.speed),
       icon: response.data.weather[0].icon,
-      latitude: response.data.coord.lat,
-      longitude: response.data.coord.lon,
-      coordinates: setCoordinates(response.data.coord),
+      coordinates: response.data.coord,
     });
   }
 
@@ -88,6 +85,7 @@ export default function Weather(props) {
                 icon={weatherData.icon}
                 latitude={weatherData.latitude}
                 longitude={weatherData.longitude}
+                coordinates={weatherData.coordinates}
               />
             </div>
           </div>
